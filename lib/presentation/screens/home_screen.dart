@@ -18,13 +18,6 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) => const _HomeContent();
-}
-
-class _HomeContent extends StatelessWidget {
-  const _HomeContent();
-
-  @override
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     return Scaffold(

@@ -1,3 +1,5 @@
+import 'package:food_delivery/core/constants/app_images.dart';
+
 import '../../core/widgets/app_back_button.dart';
 
 import 'package:food_delivery/core/routing/routes.dart';
@@ -45,7 +47,7 @@ class FavouritesScreen extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Image.asset(
-                      'assets/images/empty_favourites.png',
+                      AppImages.emptyFavourites,
                       height: 220,
                       errorBuilder: (_, _, _) =>
                           const Icon(Icons.favorite_border_rounded, size: 100),

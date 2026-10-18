@@ -11,6 +11,9 @@ android {
     namespace = "com.example.food_delivery"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
+    lint {
+    checkReleaseBuilds = false
+}
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17

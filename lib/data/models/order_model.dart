@@ -78,11 +78,4 @@ class OrderModel {
   factory OrderModel.fromFirestore(DocumentSnapshot<Map<String, dynamic>> doc) {
     return OrderModel.fromJson(doc.data() ?? <String, dynamic>{}, id: doc.id);
   }
-
-  Map<String, dynamic> toFirestore() {
-    return {
-      ...toJson(),
-      'createdAt': createdAt == null ? null : Timestamp.fromDate(createdAt!),
-    };
-  }
 }

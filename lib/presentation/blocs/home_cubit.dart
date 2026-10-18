@@ -8,6 +8,9 @@ import 'home_state.dart';
 class HomeCubit extends Cubit<HomeState> {
   final HomeRepository repository;
   int _request = 0;
+
+  // Ignore results from an older category request.
+  bool _isOldRequest(int request) => isClosed || request != _request;
   HomeCubit(this.repository) : super(const HomeState());
 
   Future<void> load() async {
@@ -24,7 +27,7 @@ class HomeCubit extends Cubit<HomeState> {
     try {
       final categories = await repository.getCategories();
       final meals = await repository.getMeals();
-      if (isClosed || request != _request) {
+      if (_isOldRequest(request)) {
         return;
       }
       emit(
@@ -35,7 +38,7 @@ class HomeCubit extends Cubit<HomeState> {
         ),
       );
     } catch (error) {
-      if (isClosed || request != _request) {
+      if (_isOldRequest(request)) {
         return;
       }
       emit(
@@ -67,7 +70,7 @@ class HomeCubit extends Cubit<HomeState> {
     );
     try {
       final meals = await repository.getMeals(category: category);
-      if (isClosed || request != _request) {
+      if (_isOldRequest(request)) {
         return;
       }
       emit(
@@ -79,7 +82,7 @@ class HomeCubit extends Cubit<HomeState> {
         ),
       );
     } catch (error) {
-      if (isClosed || request != _request) {
+      if (_isOldRequest(request)) {
         return;
       }
       emit(

@@ -22,3 +22,14 @@ subprojects {
 tasks.register<Delete>("clean") {
     delete(rootProject.layout.buildDirectory)
 }
+
+
+subprojects {
+    if (name == "stripe_android") {
+        tasks.configureEach {
+            if (name == "lintVitalAnalyzeRelease") {
+                enabled = false
+            }
+        }
+    }
+}

@@ -10,6 +10,9 @@ class SearchCubit extends Cubit<SearchState> {
   final HomeRepository _repository;
   int _requestId = 0;
 
+  // Only the latest search/filter result should update the screen.
+  bool _isOldRequest(int id) => isClosed || id != _requestId;
+
   Future<void> load() async {
     final requestId = ++_requestId;
     emit(
@@ -22,10 +25,10 @@ class SearchCubit extends Cubit<SearchState> {
     );
     try {
       final categories = await _repository.getCategories();
-      if (isClosed || requestId != _requestId) return;
+      if (_isOldRequest(requestId)) return;
       emit(SearchState(categories: categories));
     } catch (error) {
-      if (isClosed || requestId != _requestId) return;
+      if (_isOldRequest(requestId)) return;
       emit(
         SearchState(
           categories: state.categories,
@@ -55,7 +58,7 @@ class SearchCubit extends Cubit<SearchState> {
     );
     try {
       final meals = await _repository.searchMeals(query);
-      if (isClosed || requestId != _requestId) return;
+      if (_isOldRequest(requestId)) return;
       emit(
         SearchState(
           categories: state.categories,
@@ -65,7 +68,7 @@ class SearchCubit extends Cubit<SearchState> {
         ),
       );
     } catch (error) {
-      if (isClosed || requestId != _requestId) return;
+      if (_isOldRequest(requestId)) return;
       emit(
         SearchState(
           categories: state.categories,
@@ -89,7 +92,7 @@ class SearchCubit extends Cubit<SearchState> {
     );
     try {
       final meals = await _repository.getMeals(category: category);
-      if (isClosed || requestId != _requestId) return;
+      if (_isOldRequest(requestId)) return;
       emit(
         SearchState(
           categories: state.categories,
@@ -99,7 +102,7 @@ class SearchCubit extends Cubit<SearchState> {
         ),
       );
     } catch (error) {
-      if (isClosed || requestId != _requestId) return;
+      if (_isOldRequest(requestId)) return;
       emit(
         SearchState(
           categories: state.categories,
@@ -123,7 +126,7 @@ class SearchCubit extends Cubit<SearchState> {
     );
     try {
       final meals = await _repository.getMealsByArea(area);
-      if (isClosed || requestId != _requestId) return;
+      if (_isOldRequest(requestId)) return;
       emit(
         SearchState(
           categories: state.categories,
@@ -133,7 +136,7 @@ class SearchCubit extends Cubit<SearchState> {
         ),
       );
     } catch (error) {
-      if (isClosed || requestId != _requestId) return;
+      if (_isOldRequest(requestId)) return;
       emit(
         SearchState(
           categories: state.categories,

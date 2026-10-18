@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'payment_intent_input_model.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(createFactory: false)
 class PaymentIntentInputModel {
   const PaymentIntentInputModel({required this.amount, this.currency = 'usd'});
 
