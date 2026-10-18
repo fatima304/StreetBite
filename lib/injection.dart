@@ -5,13 +5,13 @@ import 'package:food_delivery/data/repositories/stripe_payment_repository_impl.d
 import 'package:get_it/get_it.dart';
 
 // Core
-import 'package:food_delivery/core/constants/api_constants.dart';
+import 'package:food_delivery/core/network/dio_factory.dart';
 
 // Services
 import 'package:food_delivery/services/auth_service.dart';
-import 'package:food_delivery/services/firestore_service.dart';
 import 'package:food_delivery/services/meal_api_service.dart';
 import 'package:food_delivery/services/stripe_payment_service.dart';
+import 'package:food_delivery/services/stripe_api_service.dart';
 
 // Data Sources
 import 'data/datasources/biometric_datasource.dart';
@@ -48,19 +48,10 @@ final getIt = GetIt.instance;
 
 void setupDependencies() {
   // Core Services
-  getIt.registerLazySingleton<FirestoreService>(() => FirestoreService());
 
   getIt.registerLazySingleton<AuthService>(() => AuthService());
 
-  getIt.registerLazySingleton<Dio>(
-    () => Dio(
-      BaseOptions(
-        baseUrl: ApiConstants.baseUrl,
-        connectTimeout: const Duration(seconds: 15),
-        receiveTimeout: const Duration(seconds: 15),
-      ),
-    ),
-  );
+  getIt.registerLazySingleton<Dio>(DioFactory.createMealDio);
 
   // Authentication
   getIt.registerLazySingleton<AuthRepository>(
@@ -128,9 +119,14 @@ void setupDependencies() {
   );
 
   // Stripe Payment
+  getIt.registerLazySingleton<StripeApiService>(
+    () => StripeApiService(DioFactory.createStripeDio()),
+  );
+
   getIt.registerLazySingleton<StripePaymentService>(
     () => StripePaymentService(
       secretKey: const String.fromEnvironment('STRIPE_TEST_SECRET_KEY'),
+      api: getIt<StripeApiService>(),
     ),
   );
 

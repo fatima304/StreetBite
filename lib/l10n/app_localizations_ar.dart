@@ -310,9 +310,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get resultsFor => 'نتائج البحث عن';
 
   @override
-  String get recommendedForYou => 'موصى به لك';
-
-  @override
   String get noMealsSearch => 'لم يتم العثور على وجبات. جرب بحثًا آخر.';
 
   @override
@@ -347,9 +344,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get ingredients => 'المكونات';
-
-  @override
-  String get popularOrigins => 'أشهر المطابخ العالمية';
 
   @override
   String get origin => 'المنشأ';
@@ -400,9 +394,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get orderPlacedSuccessfully => 'تم إرسال الطلب بنجاح!';
 
   @override
-  String get couldNotPlaceOrder => 'تعذر إرسال طلبك. حاول مرة أخرى.';
-
-  @override
   String get paymentMethod => 'طريقة الدفع';
 
   @override
@@ -433,9 +424,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get all => 'الكل';
 
   @override
-  String get freshAndDelicious => 'طازجة ولذيذة';
-
-  @override
   String get toggleFavourite => 'تبديل المفضلة';
 
   @override
@@ -447,18 +435,6 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get demoPreviewMessage =>
       'معاينة للواجهة فقط — اربطها بـ Bloc أو Firebase';
-
-  @override
-  String get demoGrilledSalad => 'سلطة دجاج مشوي';
-
-  @override
-  String get demoMargheritaPizza => 'بيتزا مارغريتا';
-
-  @override
-  String get demoCheeseBurger => 'برجر بالجبن';
-
-  @override
-  String get demoChickenWrap => 'راب الدجاج';
 
   @override
   String get errorMealDetailsUnavailable => 'تفاصيل الوجبة غير متاحة.';

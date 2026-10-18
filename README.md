@@ -209,21 +209,29 @@ The tests connect to Appium at `http://127.0.0.1:4723`. Maven Surefire uses [`au
 | --- | --- |
 | Automation summary | ![Automation suite](ScreenShots/All%20tests.png) |
 | Login tests | ![Login test](ScreenShots/login%20test.png) |
-| Search | ![Search test](ScreenShots/search.png) |
-| Category filtering | ![Category test](ScreenShots/category%20test.png) |
-| Navigation | ![Navigation test](ScreenShots/nav%20bar.png) |
 
-## App Screenshots — Stripe Test Flow
 
-The following screenshots were captured from the Android app while exercising Stripe **test mode**. They demonstrate the payment UI and order history; they do not independently verify a settled Stripe charge.
+## App Screenshots
 
-| Choose payment method | Enter test card | Processing payment |
-| --- | --- | --- |
-| ![Stripe payment methods](docs/screenshots/stripe_payment_methods.jpg) | ![Stripe test card](docs/screenshots/stripe_test_card.jpg) | ![Stripe processing](docs/screenshots/stripe_processing.jpg) |
+| Splash | Onboarding | Login |
+|:---:|:---:|:---:|
+| ![Splash](ScreenShots/splash.jpg) | ![Onboarding](ScreenShots/onboarding.jpg) | ![Login](ScreenShots/load%20login.jpg) |
 
-| Card form reset | Firestore-backed order history |
-| --- | --- |
-| ![Stripe card form](docs/screenshots/stripe_card_form.jpg) | ![Order history](docs/screenshots/order_history.jpg) |
+| Home | Meal Details | Ingredients |
+|:---:|:---:|:---:|
+| ![Home](ScreenShots/home.jpg) | ![Meal Details](ScreenShots/meal%20details.jpg) | ![Ingredients](ScreenShots/ingredients.jpg) |
+
+| Cart | Checkout | Payment |
+|:---:|:---:|:---:|
+| ![Cart](ScreenShots/cart.jpg) | ![Checkout](ScreenShots/checkout.jpg) | ![Payment](ScreenShots/%D8%A7%D9%84%D8%AF%D9%81%D8%B9.jpg) |
+
+| Profile | Favourites | Settings |
+|:---:|:---:|:---:|
+| ![Profile](ScreenShots/profile.jpg) | ![Favourites](ScreenShots/%D8%A7%D9%84%D9%85%D9%81%D8%B6%D9%84%D8%A9.jpg) | ![Settings](ScreenShots/setting.jpg) |
+
+| Nearby Vendors | Order History | Search |
+|:---:|:---:|:---:|
+| ![Nearby Vendors](ScreenShots/explore%20vendors.jpg) | ![Order History](ScreenShots/order%20history.jpg) | ![Search](ScreenShots/search.jpg) |
 
 The full app UI and QA evidence are stored separately in the project's `ScreenShots/` folder in the submission repository. Keep the existing Home, Explore, Cart, Profile, Checkout, Nearby Vendors, localization and QA screenshots there.
 

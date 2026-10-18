@@ -3,7 +3,7 @@ name: food_delivery
 description: "StreetBite is a bilingual Flutter food discovery and ordering app with Firebase, meal search, favourites, cart, and nearby vendors."
 publish_to: 'none'
 
-version: 1.0.0+1
+version: 1.0.1+2
 
 environment:
   sdk: ^3.13.5

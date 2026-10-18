@@ -30,6 +30,9 @@ class FavouritesCubit extends Cubit<FavouritesState> {
   StreamSubscription<List<MealModel>>? _subscription;
   String? _activeUid;
   int _generation = 0;
+
+  // Check that a Firestore update belongs to the current account.
+  bool _isCurrentUser(int generation) => !isClosed && generation == _generation;
   final Set<String> _pending = {};
 
   void _onAuthChanged(User? user) {
@@ -51,12 +54,12 @@ class FavouritesCubit extends Cubit<FavouritesState> {
         .watchFor(uid)
         .listen(
           (meals) {
-            if (!isClosed && generation == _generation) {
+            if (_isCurrentUser(generation)) {
               emit(FavouritesState(meals: meals, loading: false));
             }
           },
           onError: (Object error) {
-            if (!isClosed && generation == _generation) {
+            if (_isCurrentUser(generation)) {
               emit(
                 FavouritesState(
                   meals: state.meals,

@@ -1,12 +1,10 @@
 import 'package:food_delivery/core/helper/localized_validation.dart';
+import 'package:food_delivery/core/style/app_text_styles.dart';
+import 'package:food_delivery/core/widgets/custom_button.dart';
 import 'package:food_delivery/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:food_delivery/core/helper/validator.dart';
-import 'package:food_delivery/core/style/app_text_styles.dart';
-import 'package:food_delivery/core/widgets/custom_button.dart';
 import 'package:food_delivery/core/widgets/custom_text_form_field.dart';
-
-import 'password_field.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({
@@ -21,6 +19,7 @@ class LoginForm extends StatefulWidget {
 }
 
 class _LoginFormState extends State<LoginForm> {
+  bool hidden = true;
   final key = GlobalKey<FormState>();
   final email = TextEditingController();
   final password = TextEditingController();
@@ -45,7 +44,24 @@ class _LoginFormState extends State<LoginForm> {
               LocalizedValidation.message(context, AuthValidators.email(value)),
         ),
         const SizedBox(height: 14),
-        PasswordField(controller: password),
+        CustomTextFormField(
+          controller: password,
+          hintText: AppLocalizations.of(context)!.password,
+          prefixIcon: const Icon(Icons.lock_outline),
+          obscureText: hidden,
+          validator: (value) => LocalizedValidation.message(
+            context,
+            AuthValidators.password(value),
+          ),
+          suffixIcon: IconButton(
+            icon: Icon(
+              hidden
+                  ? Icons.visibility_outlined
+                  : Icons.visibility_off_outlined,
+            ),
+            onPressed: () => setState(() => hidden = !hidden),
+          ),
+        ),
         Align(
           alignment: Alignment.centerRight,
           child: TextButton(

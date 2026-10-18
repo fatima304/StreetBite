@@ -1,44 +1,37 @@
-import 'package:dio/dio.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 
 import '../data/models/payment_intent_input_model.dart';
 import '../data/models/payment_intent_model.dart';
 import '../domain/entities/payment_receipt.dart';
+import 'stripe_api_service.dart';
 
-/// TEST MODE ONLY: the secret key in an APK can be extracted.
-/// Replace direct Stripe API calls with a trusted server before real payments.
+/// TEST MODE ONLY. A secret key in a client APK is extractable.
+/// Use a trusted backend for PaymentIntents before any real deployment.
 class StripePaymentService {
-  StripePaymentService({required this.secretKey, Dio? dio})
-    : _dio = dio ?? Dio();
-  final String secretKey;
-  final Dio _dio;
+  StripePaymentService({required this.secretKey, required this.api});
 
-  void _checkTestKey() {
+  final String secretKey;
+  final StripeApiService api;
+
+  String get _authorization {
     if (!secretKey.startsWith('sk_test_')) {
       throw StateError('Only a Stripe test secret key is allowed.');
     }
+    return 'Bearer $secretKey';
   }
 
   Future<PaymentIntentModel> createPaymentIntent({
     required PaymentIntentInputModel input,
   }) async {
-    _checkTestKey();
-    final response = await _dio.post<Map<String, dynamic>>(
-      'https://api.stripe.com/v1/payment_intents',
-      data: {
-        ...input.toJson().map((key, value) => MapEntry(key, value.toString())),
-        'automatic_payment_methods[enabled]': 'true',
-      },
-      options: Options(
-        contentType: Headers.formUrlEncodedContentType,
-        headers: {'Authorization': 'Bearer $secretKey'},
-      ),
-    );
-    final data = response.data;
-    if (data == null || data['id'] == null || data['client_secret'] == null) {
+    final data = <String, dynamic>{
+      ...input.toJson().map((key, value) => MapEntry(key, value.toString())),
+      'automatic_payment_methods[enabled]': 'true',
+    };
+    final intent = await api.createPaymentIntent(data, _authorization);
+    if (intent.id.isEmpty || intent.clientSecret.isEmpty) {
       throw StateError('Invalid Stripe PaymentIntent response.');
     }
-    return PaymentIntentModel.fromJson(data);
+    return intent;
   }
 
   Future<void> presentPaymentSheet({required String clientSecret}) async {
@@ -52,14 +45,8 @@ class StripePaymentService {
   }
 
   Future<String> getPaymentStatus(String intentId) async {
-    _checkTestKey();
-    final response = await _dio.get<Map<String, dynamic>>(
-      'https://api.stripe.com/v1/payment_intents/$intentId',
-      options: Options(headers: {'Authorization': 'Bearer $secretKey'}),
-    );
-    final status = response.data?['status'];
-    if (status is! String) throw StateError('Missing payment status.');
-    return status;
+    final data = await api.getPaymentIntent(intentId, _authorization);
+    return data.status;
   }
 
   Future<PaymentReceipt> pay({required PaymentIntentInputModel input}) async {

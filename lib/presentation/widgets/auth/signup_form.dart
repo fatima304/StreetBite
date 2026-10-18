@@ -6,8 +6,6 @@ import 'package:food_delivery/core/style/app_text_styles.dart';
 import 'package:food_delivery/core/widgets/custom_button.dart';
 import 'package:food_delivery/core/widgets/custom_text_form_field.dart';
 
-import 'password_field.dart';
-
 class SignupForm extends StatefulWidget {
   const SignupForm({
     super.key,
@@ -21,15 +19,17 @@ class SignupForm extends StatefulWidget {
 }
 
 class _SignupFormState extends State<SignupForm> {
+  bool hidden = true;
   final key = GlobalKey<FormState>();
   final name = TextEditingController(), email = TextEditingController();
   final password = TextEditingController(), confirm = TextEditingController();
   bool agreed = false;
   @override
   void dispose() {
-    for (final c in [name, email, password, confirm]) {
-      c.dispose();
-    }
+    name.dispose();
+    email.dispose();
+    confirm.dispose();
+    password.dispose();
     super.dispose();
   }
 
@@ -59,7 +59,26 @@ class _SignupFormState extends State<SignupForm> {
         const SizedBox(height: 12),
 
         const SizedBox(height: 12),
-        PasswordField(controller: password),
+        CustomTextFormField(
+          controller: password,
+          hintText: AppLocalizations.of(context)!.password,
+          prefixIcon: const Icon(Icons.lock_outline),
+          obscureText: hidden,
+          validator: (value) => LocalizedValidation.message(
+            context,
+            AuthValidators.password(value),
+          ),
+
+          suffixIcon: IconButton(
+            icon: Icon(
+              hidden
+                  ? Icons.visibility_outlined
+                  : Icons.visibility_off_outlined,
+            ),
+            onPressed: () => setState(() => hidden = !hidden),
+          ),
+        ),
+
         const SizedBox(height: 12),
         CustomTextFormField(
           controller: confirm,

@@ -314,9 +314,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get resultsFor => 'Results for';
 
   @override
-  String get recommendedForYou => 'Recommended for You';
-
-  @override
   String get noMealsSearch => 'No meals found. Try another search.';
 
   @override
@@ -352,9 +349,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get ingredients => 'Ingredients';
-
-  @override
-  String get popularOrigins => 'Popular Origins';
 
   @override
   String get origin => 'Origin';
@@ -406,10 +400,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get orderPlacedSuccessfully => 'Order placed successfully!';
 
   @override
-  String get couldNotPlaceOrder =>
-      'Could not place your order. Please try again.';
-
-  @override
   String get paymentMethod => 'Payment Method';
 
   @override
@@ -440,9 +430,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get all => 'All';
 
   @override
-  String get freshAndDelicious => 'Fresh & delicious';
-
-  @override
   String get toggleFavourite => 'Toggle favourite';
 
   @override
@@ -454,18 +441,6 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get demoPreviewMessage =>
       'UI preview only — connect your Bloc / Firebase';
-
-  @override
-  String get demoGrilledSalad => 'Grilled Chicken Salad';
-
-  @override
-  String get demoMargheritaPizza => 'Margherita Pizza';
-
-  @override
-  String get demoCheeseBurger => 'Cheese Burger';
-
-  @override
-  String get demoChickenWrap => 'Chicken Wrap';
 
   @override
   String get errorMealDetailsUnavailable => 'Meal details are unavailable.';

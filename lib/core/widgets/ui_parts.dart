@@ -48,25 +48,6 @@ class FoodPhoto extends StatelessWidget {
   );
 }
 
-class GreenTag extends StatelessWidget {
-  const GreenTag(this.label, {super.key});
-  final String label;
-  @override
-  Widget build(BuildContext context) => Container(
-    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-    decoration: BoxDecoration(
-      color: Theme.of(context).colorScheme.primaryContainer,
-      borderRadius: BorderRadius.circular(18),
-    ),
-    child: Text(
-      label,
-      style: AppTextStyles.link14GreenMedium.copyWith(
-        color: Theme.of(context).colorScheme.onPrimaryContainer,
-      ),
-    ),
-  );
-}
-
 class UiCard extends StatelessWidget {
   const UiCard({super.key, required this.child});
   final Widget child;

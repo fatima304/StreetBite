@@ -4,4 +4,5 @@ class AppImages {
   static const String apple = 'assets/images/apple.png';
   static const String facebook = 'assets/images/facebook.png';
   static const String emptyCart = 'assets/images/empty_cart.png';
+  static const String emptyFavourites = 'assets/images/empty_favourites.png';
 }

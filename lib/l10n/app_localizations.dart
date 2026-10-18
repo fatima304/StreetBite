@@ -686,12 +686,6 @@ abstract class AppLocalizations {
   /// **'Results for'**
   String get resultsFor;
 
-  /// No description provided for @recommendedForYou.
-  ///
-  /// In en, this message translates to:
-  /// **'Recommended for You'**
-  String get recommendedForYou;
-
   /// No description provided for @noMealsSearch.
   ///
   /// In en, this message translates to:
@@ -763,12 +757,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Ingredients'**
   String get ingredients;
-
-  /// No description provided for @popularOrigins.
-  ///
-  /// In en, this message translates to:
-  /// **'Popular Origins'**
-  String get popularOrigins;
 
   /// No description provided for @origin.
   ///
@@ -866,12 +854,6 @@ abstract class AppLocalizations {
   /// **'Order placed successfully!'**
   String get orderPlacedSuccessfully;
 
-  /// No description provided for @couldNotPlaceOrder.
-  ///
-  /// In en, this message translates to:
-  /// **'Could not place your order. Please try again.'**
-  String get couldNotPlaceOrder;
-
   /// No description provided for @paymentMethod.
   ///
   /// In en, this message translates to:
@@ -932,12 +914,6 @@ abstract class AppLocalizations {
   /// **'All'**
   String get all;
 
-  /// No description provided for @freshAndDelicious.
-  ///
-  /// In en, this message translates to:
-  /// **'Fresh & delicious'**
-  String get freshAndDelicious;
-
   /// No description provided for @toggleFavourite.
   ///
   /// In en, this message translates to:
@@ -961,30 +937,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'UI preview only — connect your Bloc / Firebase'**
   String get demoPreviewMessage;
-
-  /// No description provided for @demoGrilledSalad.
-  ///
-  /// In en, this message translates to:
-  /// **'Grilled Chicken Salad'**
-  String get demoGrilledSalad;
-
-  /// No description provided for @demoMargheritaPizza.
-  ///
-  /// In en, this message translates to:
-  /// **'Margherita Pizza'**
-  String get demoMargheritaPizza;
-
-  /// No description provided for @demoCheeseBurger.
-  ///
-  /// In en, this message translates to:
-  /// **'Cheese Burger'**
-  String get demoCheeseBurger;
-
-  /// No description provided for @demoChickenWrap.
-  ///
-  /// In en, this message translates to:
-  /// **'Chicken Wrap'**
-  String get demoChickenWrap;
 
   /// No description provided for @errorMealDetailsUnavailable.
   ///

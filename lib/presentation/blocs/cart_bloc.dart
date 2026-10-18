@@ -51,6 +51,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   final CartRepository repository;
   late final StreamSubscription<User?> _authSub;
   String? _uid;
+  // Save cart changes in order so a slower write cannot overwrite a newer one.
   Future<void> _writeQueue = Future.value();
 
   Future<void> _onAccountChanged(
@@ -95,9 +96,15 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     );
     if (!persist || uid == null) return;
     final snapshot = List<CartItem>.from(items);
-    _writeQueue = _writeQueue.catchError((Object _) {}).then((_) async {
-      if (_uid == uid) await repository.save(uid, snapshot);
-    });
+    _writeQueue = _writeQueue
+        .catchError((Object _) {})
+        .then((_) => _saveCart(uid, snapshot));
+  }
+
+  Future<void> _saveCart(String uid, List<CartItem> items) async {
+    if (_uid == uid) {
+      await repository.save(uid, items);
+    }
   }
 
   /// Wait for queued cart writes before committing an order.
